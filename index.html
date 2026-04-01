@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Resilience Network</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- View Toggle Bar -->
+    <div class="view-toggle-bar">
+        <button class="view-btn active" id="btn-diagram" onclick="switchView('diagram')">⬡ Diagram View</button>
+        <button class="view-btn" id="btn-table" onclick="switchView('table')">⊞ Table View</button>
+    </div>
+
+    <div class="dashboard" id="diagram-view">
+        <div class="sidebar left" id="sidebar-left"></div>
+        
+        <div class="center-stage">
+            <div class="indicator-ring" id="indicator-ring">
+                <div class="grade-center">
+                    <div id="hover-label-display"></div>
+                    <div class="grade-cards">
+                        <div class="grade-box" id="grade-A" onclick="selectItem('grade', 'A')">A<span>Grade</span></div>
+                        <div class="grade-box" id="grade-B" onclick="selectItem('grade', 'B')">B<span>Grade</span></div>
+                        
+                        <!-- Title perfectly positioned between A/B and C/D -->
+                        <div class="title-container">
+                            <div class="center-heading">Resilience Measurement<br>Network Diagram</div>
+                            <div class="filters">
+                                <label><input type="checkbox" id="chk-generic" value="Generic" checked onchange="renderIndicators()"> Generic</label>
+                                <label><input type="checkbox" id="chk-flood" value="Flood" checked onchange="renderIndicators()"> Flood</label>
+                                <label><input type="checkbox" id="chk-heat" value="Heatwave" checked onchange="renderIndicators()"> Heatwave</label>
+                            </div>
+                        </div>
+                        
+                        <div class="grade-box" id="grade-C" onclick="selectItem('grade', 'C')">C<span>Grade</span></div>
+                        <div class="grade-box" id="grade-D" onclick="selectItem('grade', 'D')">D<span>Grade</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar right" id="sidebar-right"></div>
+    </div>
+
+    <!-- Table View -->
+    <div id="table-view" style="display:none;">
+        <div class="table-toolbar">
+            <label><input type="checkbox" id="tbl-generic" value="Generic" checked onchange="renderTable()"> Generic</label>
+            <label><input type="checkbox" id="tbl-flood" value="Flood" checked onchange="renderTable()"> Flood</label>
+            <label><input type="checkbox" id="tbl-heat" value="Heatwave" checked onchange="renderTable()"> Heatwave</label>
+            <div class="toolbar-divider"></div>
+            <div id="tbl-hover-label">
+                <span id="tbl-hover-code"></span>
+                <span id="tbl-hover-text">Hover over an indicator column to see its label</span>
+            </div>
+        </div>
+        <div class="table-scroll-wrapper">
+            <table id="data-table"><thead></thead><tbody></tbody></table>
+        </div>
+    </div>
+    
+    <svg id="lines"><g id="lines-group"></g></svg>
+
+    <script src="gradingData.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
